@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eid Mubarak | Epic Guitar Sessions</title>
+    <title>Eid Mubarak</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-gold: #d4af37;
@@ -27,7 +32,12 @@
             min-height: 100vh;
         }
 
-        /* --- Epic Virtual Animations --- */
+        /* --- Calligraphy Styling --- */
+        .calligraphy-text {
+            font-family: 'Aref Ruqaa', serif;
+        }
+
+        /* --- Virtual Animations --- */
         .background-animations {
             position: fixed;
             top: 0;
@@ -81,23 +91,21 @@
         }
 
         h1 {
-            font-size: 4.5rem;
-            letter-spacing: 6px;
+            font-size: 6rem;
             color: var(--primary-gold);
             text-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
             margin-bottom: 10px;
             animation: fadeIn 2s ease-out;
+            font-weight: 700;
         }
 
         p.subtitle {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: #aaa;
-            letter-spacing: 3px;
-            text-transform: uppercase;
             animation: fadeIn 3s ease-out;
         }
 
-        /* Professional Audio Section */
+        /* Audio Section */
         .container {
             max-width: 900px;
             margin: -20px auto 100px;
@@ -138,8 +146,7 @@
 
         .track-info h3 {
             color: var(--accent);
-            font-size: 1.3rem;
-            letter-spacing: 1px;
+            font-size: 1.8rem;
         }
 
         audio {
@@ -152,7 +159,7 @@
         footer {
             text-align: center;
             padding: 40px;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             color: #555;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -163,7 +170,7 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
+            h1 { font-size: 4rem; }
             .moon { font-size: 5rem; right: 10%; }
             .track { flex-direction: column; text-align: center; gap: 15px; }
             .track:hover { transform: scale(1.02); }
@@ -183,19 +190,18 @@
     </div>
 
     <header>
-        <h1>EID MUBARAK</h1>
-        <p class="subtitle">A Professional Guitar Experience</p>
+        <h1 class="calligraphy-text">Eid Mubarak</h1>
+        <p class="subtitle calligraphy-text">Joy & Blessings</p>
     </header>
 
     <div class="container">
         <div class="audio-card">
-            <h2 style="margin-bottom: 25px; border-left: 4px solid var(--primary-gold); padding-left: 15px; text-transform: uppercase; letter-spacing: 2px;">Featured Tracks</h2>
+            <h2 class="calligraphy-text" style="margin-bottom: 25px; border-left: 4px solid var(--primary-gold); padding-left: 15px; font-size: 2rem;">Celebration Audio</h2>
             
             <div class="track-list">
                 <div class="track">
                     <div class="track-info">
-                        <h3>Eid Mubarak Song</h3>
-                        <p style="font-size: 0.9rem; color: #aaa; margin-top: 5px;">Eid Mubarak Eid Mubarak</p>
+                        <h3 class="calligraphy-text">Eid Mubarak Song</h3>
                     </div>
                     <audio controls>
                         <source src="eid-song.mp3" type="audio/mpeg">
@@ -205,11 +211,10 @@
 
                 <div class="track">
                     <div class="track-info">
-                        <h3>Acoustic Celebration</h3>
-                        <p style="font-size: 0.9rem; color: #aaa; margin-top: 5px;">Guitar Solo</p>
+                        <h3 class="calligraphy-text">Guitar Melody</h3>
                     </div>
                     <audio controls>
-                        <source src="track2.mp3" type="audio/mpeg">
+                        <source src="guitar-track.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
@@ -218,7 +223,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Crafted with Excellence | High-End Design</p>
+        <p class="calligraphy-text">&copy; 2026 Crafted with Excellence</p>
     </footer>
 
 </body>

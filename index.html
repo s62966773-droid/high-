@@ -3,219 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>عید مبارک | High Vision Mobile</title>
+    <title>عید مبارک | جادوئی تحفہ</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Reem+Kufi+Calligraphy:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --emerald: #021a11;
-            --accent-green: #053b27;
-            --text-white: #f0fdf4;
+            --deep-emerald: #021a11;
+            --emerald-silk: #032b1d;
+            --white: #f0fdf4;
+            --glow: 0 0 25px rgba(212, 175, 55, 0.4);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background-color: var(--emerald);
-            background-image: radial-gradient(circle at center, var(--accent-green) 0%, var(--emerald) 100%);
-            color: var(--text-white);
+            background: radial-gradient(circle at center, var(--emerald-silk) 0%, var(--deep-emerald) 100%);
+            color: var(--white);
             min-height: 100vh;
             font-family: 'Amiri', serif;
-            overflow-x: hidden; /* فون پر اسکرین دائیں بائیں نہیں ہلے گی */
+            overflow: hidden; /* جب تک ڈبہ نہ کھلے، کچھ نظر نہ آئے */
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 10px;
+            perspective: 1000px;
         }
 
-        /* --- Decorations --- */
-        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        /* --- Welcome / Unboxing Screen (The Magic Happens Here) --- */
+        #unboxing-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--deep-emerald);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+
+        .gift-box {
+            font-size: 10rem;
+            filter: drop-shadow(var(--glow));
+            cursor: pointer;
+            animation: bounce 2s infinite ease-in-out;
+            transition: transform 0.8s;
+        }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        .click-text {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 2rem;
+            color: #d1fae5;
+            margin-top: 20px;
+            animation: fadeInOut 2s infinite;
+        }
+
+        @keyframes fadeInOut { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+        /* --- Pure Magical Background --- */
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0; }
         .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite; }
         
         .moon {
-            position: fixed; top: 20px; left: 20px; font-size: 3rem;
-            filter: drop-shadow(0 0 20px #fcf6ba);
-            animation: float 5s ease-in-out infinite;
-            z-index: 2;
+            position: fixed; top: 40px; left: 60px; font-size: 6rem;
+            filter: drop-shadow(0 0 30px rgba(197, 160, 89, 0.6));
+            opacity: 0; z-index: 2;
         }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-
-        /* --- Header --- */
-        header { text-align: center; margin-top: 15vh; z-index: 5; width: 100%; }
+        /* --- Elegant Header --- */
+        header { text-align: center; margin-top: -10vh; z-index: 5; opacity: 0; }
 
         h1 {
             font-family: 'Reem Kufi Calligraphy', sans-serif;
-            font-size: clamp(3.5rem, 15vw, 8rem); /* فون پر چھوٹا، کمپیوٹر پر بڑا */
+            font-size: clamp(4rem, 15vw, 9rem);
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
         }
 
         .urdu-subtitle {
             font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: clamp(1.2rem, 5vw, 2rem);
-            margin-bottom: 30px;
-            color: #d1fae5;
-            padding: 0 15px;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: #ffffff;
+            line-height: 2.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            padding: 0 10px;
         }
-
-        /* --- Buttons --- */
-        .controls {
-            display: flex;
-            flex-direction: column; /* فون پر بٹن ایک دوسرے کے نیچے آئیں گے */
-            gap: 15px;
-            margin-bottom: 30px;
-            z-index: 10;
-            width: 90%;
-            max-width: 400px;
-        }
-
-        .btn {
-            padding: 15px;
-            font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: 1.4rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 2px solid transparent;
-            width: 100%;
-        }
-
-        .btn-gold { background: var(--gold-gradient); color: var(--emerald); font-weight: bold; }
-        .btn-outline { background: transparent; border: 2px solid #bf953f; color: #fcf6ba; }
-
-        .btn:active { transform: scale(0.95); } /* کلک کرنے پر دبنے کا احساس */
 
         /* --- Blessing Card --- */
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 30px 20px;
-            border-radius: 15px;
+            border-radius: 10px;
+            padding: 50px 30px;
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
             text-align: center;
+            opacity: 0;
             z-index: 5;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
         }
 
-        #dua-text {
-            font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: 1.3rem;
-            line-height: 2;
-            min-height: 80px;
-        }
+        .dua-display { min-height: 180px; display: flex; flex-direction: column; justify-content: center; }
+        #dua-title { color: var(--gold-gradient); -webkit-text-fill-color: initial; font-size: 2.5rem; margin-bottom: 15px; }
+        #dua-text { font-family: 'Noto Nastaliq Urdu', serif; font-size: 1.6rem; color: #d1fae5; line-height: 2.2; }
 
-        /* --- Mobile-Friendly Burst --- */
+        /* --- Burst Effect --- */
         .particle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 100;
-            font-family: 'Amiri', serif;
-            font-weight: bold;
-            color: #fcf6ba;
-            font-size: 1.5rem;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
-            animation: moveParticle 2s forwards ease-out;
+            position: fixed; pointer-events: none; z-index: 100;
+            font-family: 'Amiri', serif; font-weight: bold;
+            color: #fcf6ba; font-size: clamp(1.2rem, 4vw, 2.5rem);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+            animation: burstParticle 2.5s forwards ease-out;
         }
 
-        @keyframes moveParticle {
-            0% { transform: translate(0, 0); opacity: 0; }
+        @keyframes burstParticle {
+            0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
             20% { opacity: 1; }
-            100% { transform: translate(var(--mx), var(--my)); opacity: 0; }
+            100% { transform: translate(var(--mx), var(--my)) rotate(var(--mr)); opacity: 0; scale: 1.5; }
         }
 
-        footer { margin-top: auto; padding: 20px; opacity: 0.3; font-size: 0.9rem; }
+        /* --- Animation Triggers --- */
+        .show { animation: fadeIn 2s forwards; opacity: 1; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* کمپیوٹر کے لیے ایڈجسٹمنٹ */
-        @media (min-width: 600px) {
-            .controls { flex-direction: row; max-width: 600px; }
-            .moon { font-size: 5rem; top: 40px; left: 40px; }
-            #dua-text { font-size: 1.6rem; }
+        @media (max-width: 768px) {
+            h1 { font-size: 5rem; }
+            .card { padding: 30px; }
+            .moon { font-size: 3.5rem; top: 20px; left: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="stars" id="star-container"></div>
-    <div class="moon">🌙</div>
+    <div id="unboxing-screen" onclick="openGift()">
+        <div class="gift-box" id="gift">🎁</div>
+        <p class="click-text">عید کا تحفہ کھولنے کے لیے کلک کریں</p>
+    </div>
 
-    <header>
+    <div class="stars" id="star-container"></div>
+    <div class="moon" id="moon">🌙</div>
+    
+    <header id="header">
         <h1>عید مبارک</h1>
-        <p class="urdu-subtitle">آپ کے لیے خاص عید کا تحفہ</p>
+        <p class="urdu-subtitle">آپ کے لیے خاص عید کی دعا</p>
     </header>
 
-    <div class="controls">
-        <button class="btn btn-gold" onclick="celebrate()">خوشیاں منائیں ✨</button>
-        <button class="btn btn-outline" onclick="newDua()">دعا حاصل کریں 🤲</button>
+    <div class="card" id="card">
+        <div class="dua-display">
+            <h3 id="dua-title">برکات و رحمت</h3>
+            <p id="dua-text">اللہ تعالیٰ اس عید پر آپ کے گھر کو خوشیوں، امن اور سکون سے بھر دے۔</p>
+        </div>
     </div>
-
-    <div class="card">
-        <p id="dua-text">اللہ تعالیٰ آپ کو اور آپ کے گھر والوں کو عید کی حقیقی خوشیاں نصیب فرمائے۔</p>
-    </div>
-
-    <footer>
-        <p>© ٢٠٢٦ | HIGH VISION</p>
-    </footer>
 
     <script>
-        // Stars Logic
+        // Stars background logic
         const starContainer = document.getElementById('star-container');
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 60; i++) {
             const star = document.createElement('div');
             star.className = 'star';
-            star.style.width = star.style.height = Math.random() * 2 + 'px';
+            star.style.width = star.style.height = Math.random() * 3 + 'px';
             star.style.top = Math.random() * 100 + '%';
             star.style.left = Math.random() * 100 + '%';
             starContainer.appendChild(star);
         }
 
+        // Duas for the card
         const duas = [
-            "اللہ آپ کی زندگی میں برکتیں اور خوشیاں لائے۔",
-            "اللہ آپ کی ہر دعا کو قبول فرمائے۔ عید مبارک!",
-            "اللہ آپ کو ہمیشہ ہنستا مسکراتا رکھے۔",
-            "دعا ہے کہ یہ عید امن اور سکون کا پیغام لائے۔",
-            "اللہ آپ کے رزق اور کاروبار میں برکت عطا فرمائے۔"
+            { title: "برکات و رحمت", text: "اللہ تعالیٰ اس عید پر آپ کے گھر کو خوشیوں، امن اور سکون سے بھر دے۔" },
+            { title: "قبولیتِ دعا", text: "اللہ آپ کی تمام دعائیں، نیک اعمال اور قربانیاں اپنی بارگاہ میں قبول فرمائے۔" },
+            { title: "خوشحالی", text: "یہ عید آپ کی زندگی میں کامیابیوں اور برکتوں کا نیا آغاز ثابت ہو۔" },
+            { title: "صحت اور سلامتی", text: "اللہ آپ کو اور آپ کے اہل خانہ کو ہمیشہ اپنی حفظ و امان میں رکھے۔" },
+            { title: "رزق میں برکت", text: "اللہ آپ کے رزق میں وسعت اور کاروبار میں برکت عطا فرمائے۔" }
         ];
 
-        function newDua() {
-            const text = document.getElementById('dua-text');
-            text.style.opacity = 0;
+        let index = 0;
+
+        // Function to open the gift and start magic
+        function openGift() {
+            const screen = document.getElementById('unboxing-screen');
+            const gift = document.getElementById('gift');
+            
+            // Animation for gift opening
+            gift.style.transform = 'scale(5) rotate(360deg)';
+            screen.style.opacity = '0';
+            
+            // Activate the rest of the site after animation
             setTimeout(() => {
-                text.innerText = duas[Math.floor(Math.random() * duas.length)];
-                text.style.opacity = 1;
-            }, 300);
+                screen.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scroll
+                startMagic(); // Start the background & header
+                setInterval(showBurst, 3000); // Continuous sparkle bursts
+                setInterval(nextDua, 6000); // Cycle through duas automatically
+            }, 800);
         }
 
-        function celebrate() {
-            // موبائل کے لیے ہم فاصلہ (distance) کم رکھیں گے تاکہ اسکرین سے باہر نہ جائے
-            const isMobile = window.innerWidth < 600;
-            const burstCount = isMobile ? 10 : 18;
-            const spread = isMobile ? 150 : 350;
+        function startMagic() {
+            document.getElementById('star-container').classList.add('show');
+            document.getElementById('moon').classList.add('show');
+            document.getElementById('header').classList.add('show');
+            document.getElementById('card').classList.add('show');
+            showBurst(); // First burst instantly
+        }
 
-            for (let i = 0; i < burstCount; i++) {
+        function nextDua() {
+            const titleEl = document.getElementById('dua-title');
+            const textEl = document.getElementById('dua-text');
+            textEl.parentElement.style.opacity = 0;
+            setTimeout(() => {
+                index = (index + 1) % duas.length;
+                titleEl.innerText = duas[index].title;
+                textEl.innerText = duas[index].text;
+                textEl.parentElement.style.opacity = 1;
+            }, 500);
+        }
+
+        function showBurst() {
+            for (let i = 0; i < 20; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 p.innerText = 'عید مبارک';
                 
                 const angle = Math.random() * Math.PI * 2;
-                const dist = Math.random() * spread;
+                const dist = 300 + Math.random() * 500;
                 const mx = Math.cos(angle) * dist + 'px';
                 const my = Math.sin(angle) * dist + 'px';
+                const mr = (Math.random() - 0.5) * 60 + 'deg';
                 
                 p.style.setProperty('--mx', mx);
                 p.style.setProperty('--my', my);
+                p.style.setProperty('--mr', mr);
                 
+                // Burst center position
                 p.style.left = '50%';
-                p.style.top = '40%';
+                p.style.top = Math.random() * 50 + '%'; // Pops from different heights
 
                 document.body.appendChild(p);
-                setTimeout(() => p.remove(), 2000);
+                setTimeout(() => p.remove(), 2500);
             }
         }
     </script>

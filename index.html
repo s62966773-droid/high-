@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eid Mubarak</title>
+    <title>عيد مبارك</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,30 +11,26 @@
 
     <style>
         :root {
-            --primary-gold: #d4af37;
-            --deep-bg: #0a0e14;
-            --glass: rgba(255, 255, 255, 0.05);
-            --accent: #e5c76b;
+            --primary-gold: #e6c27a;
+            --deep-green: #063b27;
+            --light-green: #0f5c3d;
+            --glass: rgba(255, 255, 255, 0.08);
+            --text-light: #f0fdf4;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--deep-bg);
-            color: white;
+            background-color: var(--deep-green);
+            color: var(--text-light);
             overflow-x: hidden;
-            background: linear-gradient(135deg, #1a1f2c 0%, #0a0e14 100%);
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--deep-green) 100%);
             min-height: 100vh;
-        }
-
-        /* --- Calligraphy Styling --- */
-        .calligraphy-text {
-            font-family: 'Aref Ruqaa', serif;
+            font-family: 'Aref Ruqaa', serif; /* Applied Calligraphy Font Everywhere */
         }
 
         /* --- Virtual Animations --- */
@@ -52,9 +48,9 @@
         .moon {
             position: absolute;
             top: 15%;
-            right: 20%;
+            left: 20%; /* Switched side for RTL */
             font-size: 8rem;
-            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.6));
+            filter: drop-shadow(0 0 40px rgba(230, 194, 122, 0.6));
             animation: float 6s ease-in-out infinite;
         }
 
@@ -91,17 +87,17 @@
         }
 
         h1 {
-            font-size: 6rem;
+            font-size: 7rem;
             color: var(--primary-gold);
-            text-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            text-shadow: 0 0 30px rgba(230, 194, 122, 0.5);
             margin-bottom: 10px;
             animation: fadeIn 2s ease-out;
             font-weight: 700;
         }
 
         p.subtitle {
-            font-size: 1.5rem;
-            color: #aaa;
+            font-size: 2rem;
+            color: #d1fae5;
             animation: fadeIn 3s ease-out;
         }
 
@@ -118,10 +114,10 @@
             background: var(--glass);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 20px rgba(212, 175, 55, 0.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 20px rgba(230, 194, 122, 0.1);
         }
 
         .track-list {
@@ -133,24 +129,25 @@
             align-items: center;
             justify-content: space-between;
             padding: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s ease;
             border-radius: 10px;
         }
 
         .track:hover {
-            background: rgba(212, 175, 55, 0.15);
-            transform: scale(1.02) translateX(10px);
-            border-left: 4px solid var(--primary-gold);
+            background: rgba(230, 194, 122, 0.15);
+            transform: scale(1.02) translateX(-10px); /* RTL slide direction */
+            border-right: 4px solid var(--primary-gold);
         }
 
         .track-info h3 {
-            color: var(--accent);
-            font-size: 1.8rem;
+            color: var(--primary-gold);
+            font-size: 2rem;
         }
 
         audio {
-            filter: invert(100%) sepia(20%) saturate(1000%) hue-rotate(10deg);
+            /* Styled to match the green/gold theme slightly better */
+            filter: sepia(20%) saturate(150%) hue-rotate(90deg);
             height: 35px;
             opacity: 0.9;
             outline: none;
@@ -159,9 +156,9 @@
         footer {
             text-align: center;
             padding: 40px;
-            font-size: 1.2rem;
-            color: #555;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1.5rem;
+            color: #a7f3d0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         @keyframes fadeIn {
@@ -170,8 +167,8 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 4rem; }
-            .moon { font-size: 5rem; right: 10%; }
+            h1 { font-size: 5rem; }
+            .moon { font-size: 5rem; left: 10%; }
             .track { flex-direction: column; text-align: center; gap: 15px; }
             .track:hover { transform: scale(1.02); }
         }
@@ -181,41 +178,35 @@
 
     <div class="background-animations">
         <div class="moon">🌙</div>
-        <div class="star" style="top: 20%; left: 10%; width: 4px; height: 4px; animation-duration: 2s;"></div>
-        <div class="star" style="top: 35%; left: 80%; width: 3px; height: 3px; animation-duration: 3s;"></div>
-        <div class="star" style="top: 50%; left: 25%; width: 5px; height: 5px; animation-duration: 2.5s;"></div>
-        <div class="star" style="top: 70%; left: 70%; width: 4px; height: 4px; animation-duration: 4s;"></div>
-        <div class="star" style="top: 15%; left: 50%; width: 6px; height: 6px; animation-duration: 3.5s;"></div>
-        <div class="star" style="top: 80%; left: 15%; width: 3px; height: 3px; animation-duration: 2.8s;"></div>
+        <div class="star" style="top: 20%; right: 10%; width: 4px; height: 4px; animation-duration: 2s;"></div>
+        <div class="star" style="top: 35%; right: 80%; width: 3px; height: 3px; animation-duration: 3s;"></div>
+        <div class="star" style="top: 50%; right: 25%; width: 5px; height: 5px; animation-duration: 2.5s;"></div>
+        <div class="star" style="top: 70%; right: 70%; width: 4px; height: 4px; animation-duration: 4s;"></div>
+        <div class="star" style="top: 15%; right: 50%; width: 6px; height: 6px; animation-duration: 3.5s;"></div>
+        <div class="star" style="top: 80%; right: 15%; width: 3px; height: 3px; animation-duration: 2.8s;"></div>
     </div>
 
     <header>
-        <h1 class="calligraphy-text">Eid Mubarak</h1>
-        <p class="subtitle calligraphy-text">Joy & Blessings</p>
-    </header>
+        <h1>عيد مبارك</h1> <p class="subtitle">فرح وبركات</p> </header>
 
     <div class="container">
         <div class="audio-card">
-            <h2 class="calligraphy-text" style="margin-bottom: 25px; border-left: 4px solid var(--primary-gold); padding-left: 15px; font-size: 2rem;">Celebration Audio</h2>
-            
-            <div class="track-list">
+            <h2 style="margin-bottom: 25px; border-right: 4px solid var(--primary-gold); padding-right: 15px; font-size: 2.5rem;">صوتيات العيد</h2> <div class="track-list">
                 <div class="track">
                     <div class="track-info">
-                        <h3 class="calligraphy-text">Eid Mubarak Song</h3>
-                    </div>
-                    <audio controls>
+                        <h3>أغنية عيد مبارك</h3> </div>
+                    <audio controls autoplay loop>
                         <source src="eid-song.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
+                        متصفحك لا يدعم عنصر الصوت.
                     </audio>
                 </div>
 
                 <div class="track">
                     <div class="track-info">
-                        <h3 class="calligraphy-text">Guitar Melody</h3>
-                    </div>
+                        <h3>لحن الغيتار</h3> </div>
                     <audio controls>
                         <source src="guitar-track.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
+                        متصفحك لا يدعم عنصر الصوت.
                     </audio>
                 </div>
             </div>
@@ -223,8 +214,7 @@
     </div>
 
     <footer>
-        <p class="calligraphy-text">&copy; 2026 Crafted with Excellence</p>
-    </footer>
+        <p>تم التصميم بامتياز &copy; ٢٠٢٦</p> </footer>
 
 </body>
 </html>

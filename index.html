@@ -3,217 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عيد مبارك | دعائیں اور برکات</title>
+    <title>عید مبارک | Majestic Celebration</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Calligraphy:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Reem+Kufi+Calligraphy:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --gold: #d4af37;
             --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --emerald: #052c1d;
-            --light-emerald: #0a4d33;
+            --deep-emerald: #021a11;
+            --accent-green: #053b27;
             --white: #f0fdf4;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: radial-gradient(circle at center, var(--light-emerald) 0%, var(--emerald) 100%);
+            background-color: var(--deep-emerald);
+            background-image: radial-gradient(circle at center, var(--accent-green) 0%, var(--deep-emerald) 100%);
             color: var(--white);
             min-height: 100vh;
-            font-family: 'Amiri', serif; /* Quranic Font for general body */
-            overflow-x: hidden;
+            font-family: 'Amiri', serif;
+            overflow: hidden; /* Keeps the bursts inside the screen */
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* --- Decorations --- */
-        .lantern-container {
-            position: fixed;
-            top: 20px;
-            right: 50px;
-            animation: swing 3s ease-in-out infinite;
-            transform-origin: top center;
-            z-index: 10;
-        }
-
-        .lantern { font-size: 4rem; filter: drop-shadow(0 0 15px var(--gold)); }
-
-        @keyframes swing {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
+        /* --- Background Effects --- */
         .moon {
-            position: absolute;
-            top: 50px;
+            position: fixed;
+            top: 40px;
             left: 50px;
             font-size: 5rem;
-            filter: drop-shadow(0 0 30px var(--gold));
-            animation: glow 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px #fcf6ba);
+            animation: float 4s ease-in-out infinite;
         }
 
-        @keyframes glow {
-            0%, 100% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
+        /* --- Main Content --- */
         header {
             text-align: center;
-            margin-top: 8vh;
-            padding: 20px;
+            margin-top: 10vh;
+            z-index: 5;
         }
 
         h1 {
             font-family: 'Reem Kufi Calligraphy', sans-serif;
-            font-size: 7rem;
+            font-size: 8rem;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
             margin-bottom: 10px;
         }
 
         .urdu-subtitle {
             font-family: 'Noto Nastaliq Urdu', serif;
             font-size: 2.2rem;
-            color: var(--white);
-            margin-bottom: 30px;
-            line-height: 2;
+            margin-bottom: 40px;
+            line-height: 2.5;
         }
 
-        /* --- The Blessings Card & Button --- */
-        .blessings-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 40px;
-            padding: 40px;
-            width: 90%;
-            max-width: 700px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            animation: fadeInUp 2s ease;
-        }
-
-        .dua-display {
-            min-height: 150px;
+        /* --- Buttons --- */
+        .button-group {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-bottom: 30px;
-            transition: opacity 0.5s ease;
+            gap: 20px;
+            margin-bottom: 50px;
+            z-index: 10;
         }
 
-        #dua-title { color: var(--gold); font-size: 2.2rem; margin-bottom: 10px; }
-        #dua-text { font-family: 'Noto Nastaliq Urdu', serif; font-size: 1.5rem; color: #d1fae5; line-height: 2.2; }
-
-        /* --- Majestic Button Styling --- */
-        .dua-button {
-            background: var(--gold-gradient);
-            color: var(--emerald);
-            border: none;
+        .btn {
             padding: 15px 40px;
-            font-size: 1.8rem;
             font-family: 'Noto Nastaliq Urdu', serif;
-            font-weight: bold;
+            font-size: 1.8rem;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
             transition: 0.3s;
+            border: 2px solid transparent;
         }
 
-        .dua-button:hover {
+        .btn-celebrate {
+            background: var(--gold-gradient);
+            color: var(--deep-emerald);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            font-weight: bold;
+        }
+
+        .btn-dua {
+            background: transparent;
+            color: var(--gold-gradient);
+            border: 2px solid #bf953f;
+            color: #fcf6ba;
+        }
+
+        .btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.7);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* --- Dua Display Card --- */
+        .blessings-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            min-height: 200px;
         }
 
-        footer { margin: 40px 0; font-size: 1.2rem; color: rgba(255, 255, 255, 0.4); }
+        #dua-text {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1.6rem;
+            line-height: 2.2;
+            color: #d1fae5;
+        }
+
+        /* --- Eid Mubarak Burst Particle Effect --- */
+        .eid-particle {
+            position: fixed;
+            font-family: 'Amiri', serif;
+            font-weight: bold;
+            color: #fcf6ba;
+            pointer-events: none;
+            z-index: 99;
+            font-size: 2rem;
+            text-shadow: 0 0 10px var(--gold-gradient);
+            animation: burstOut 2s forwards ease-out;
+        }
+
+        @keyframes burstOut {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(1.5); opacity: 0; }
+        }
+
+        footer { margin-top: 50px; opacity: 0.4; font-size: 1.1rem; }
 
         @media (max-width: 768px) {
-            h1 { font-size: 4rem; }
-            .urdu-subtitle { font-size: 1.5rem; }
-            .blessings-card { padding: 30px; }
+            h1 { font-size: 4.5rem; }
+            .button-group { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
     <div class="moon">🌙</div>
-    
-    <div class="lantern-container">
-        <div class="lantern">🏮</div>
-    </div>
 
     <header>
-        <h1>عيد مبارك</h1>
-        <p class="urdu-subtitle">آپ کے لیے خاص دعا</p>
+        <h1>عید مبارک</h1>
+        <p class="urdu-subtitle">خوشیوں اور برکتوں کا پیغام</p>
     </header>
 
-    <div class="blessings-card">
-        <div class="dua-display" id="dua-container">
-            <h3 id="dua-title">برکات و رحمت</h3>
-            <p id="dua-text">اللہ تعالیٰ اس عید پر آپ کے گھر کو خوشیوں، امن اور سکون سے بھر دے۔</p>
-        </div>
+    <div class="button-group">
+        <button class="btn btn-celebrate" onclick="eidBlast()">عید کی خوشیاں منائیں</button>
+        <button class="btn btn-dua" onclick="changeDua()">دعا حاصل کریں</button>
+    </div>
 
-        <button class="dua-button" onclick="changeDua()">دعا حاصل کریں</button>
+    <div class="blessings-card">
+        <p id="dua-text">اللہ تعالیٰ آپ کی تمام دعائیں اور عبادتیں قبول فرمائے۔ عید مبارک!</p>
     </div>
 
     <footer>
-        <p>٢٠٢٦ | نیک تمنائیں</p>
+        <p>١٤٤٧ ھ | ڈیزائن برائے آپ</p>
     </footer>
 
     <script>
+        // List of Duas
         const duas = [
-            {
-                title: "برکات و رحمت",
-                text: "اللہ تعالیٰ اس عید پر آپ کے گھر کو خوشیوں، امن اور سکون سے بھر دے۔"
-            },
-            {
-                title: "قبولیتِ دعا",
-                text: "اللہ آپ کی تمام دعائیں، نیک اعمال اور قربانیاں اپنی بارگاہ میں قبول فرمائے۔"
-            },
-            {
-                title: "خوشحالی",
-                text: "یہ عید آپ کی زندگی میں کامیابیوں اور برکتوں کا نیا آغاز ثابت ہو۔"
-            },
-            {
-                title: "صحت اور سلامتی",
-                text: "اللہ آپ کو اور آپ کے اہل خانہ کو ہمیشہ اپنی حفظ و امان میں رکھے۔"
-            },
-            {
-                title: "رزق میں برکت",
-                text: "اللہ آپ کے رزق میں وسعت اور کاروبار میں برکت عطا فرمائے۔"
-            }
+            "اللہ تعالیٰ آپ کی زندگی کو خوشیوں اور برکتوں سے منور فرمائے۔",
+            "اللہ آپ کی تمام دعاؤں کو اپنی بارگاہ میں قبول فرمائے۔",
+            "دعا ہے کہ یہ عید آپ کے لیے امن اور سلامتی کا پیغام لائے۔",
+            "اللہ آپ کے رزق میں وسعت اور کاروبار میں برکت عطا فرمائے۔",
+            "اللہ آپ کو اور آپ کے اہل خانہ کو ہمیشہ اپنی حفظ و امان میں رکھے۔"
         ];
 
-        let currentIndex = 0;
-
         function changeDua() {
-            const container = document.getElementById('dua-container');
-            const title = document.getElementById('dua-title');
-            const text = document.getElementById('dua-text');
-
-            // Fade out
-            container.style.opacity = 0;
-
+            const textEl = document.getElementById('dua-text');
+            const randomDua = duas[Math.floor(Math.random() * duas.length)];
+            textEl.style.opacity = 0;
             setTimeout(() => {
-                currentIndex = (currentIndex + 1) % duas.length;
-                title.innerText = duas[currentIndex].title;
-                text.innerText = duas[currentIndex].text;
+                textEl.innerText = randomDua;
+                textEl.style.opacity = 1;
+            }, 300);
+        }
 
-                // Fade in
-                container.style.opacity = 1;
-            }, 500);
+        // Eid Mubarak Burst Effect
+        function eidBlast() {
+            const count = 15; // Number of "Eid Mubarak" texts to pop out
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'eid-particle';
+                p.innerText = 'عید مبارک';
+                
+                // Random directions for the burst
+                const x = (Math.random() - 0.5) * 600 + 'px';
+                const y = (Math.random() - 0.5) * 600 + 'px';
+                
+                p.style.setProperty('--x', x);
+                p.style.setProperty('--y', y);
+                
+                // Set initial position to center screen
+                p.style.left = '50%';
+                p.style.top = '40%';
+
+                document.body.appendChild(p);
+
+                // Remove the element after animation ends
+                setTimeout(() => p.remove(), 2000);
+            }
         }
     </script>
-
 </body>
 </html>

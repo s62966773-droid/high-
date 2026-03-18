@@ -3,172 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عید مبارک | Radiant Blessings</title>
+    <title>عيد مبارك | دعائیں اور برکات</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Calligraphy:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
+            --gold: #d4af37;
             --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --deep-emerald: #021a11;
-            --accent-green: #053b27;
-            --glow: 0 0 25px rgba(197, 160, 89, 0.4);
+            --emerald: #052c1d;
+            --light-emerald: #0a4d33;
+            --white: #f0fdf4;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--deep-emerald);
-            background-image: radial-gradient(circle at center, var(--accent-green) 0%, var(--deep-emerald) 100%);
-            color: #fff;
+            background: radial-gradient(circle at center, var(--light-emerald) 0%, var(--emerald) 100%);
+            color: var(--white);
             min-height: 100vh;
+            font-family: 'Amiri', serif; /* Quranic Font for general body */
+            overflow-x: hidden;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            font-family: 'Amiri', serif;
-            overflow: hidden;
         }
 
-        /* --- Elegant Frame --- */
-        .page-frame {
+        /* --- Decorations --- */
+        .lantern-container {
             position: fixed;
-            top: 20px; left: 20px; right: 20px; bottom: 20px;
-            border: 2px solid transparent;
-            border-image: var(--gold-gradient) 1;
+            top: 20px;
+            right: 50px;
+            animation: swing 3s ease-in-out infinite;
+            transform-origin: top center;
             z-index: 10;
-            pointer-events: none;
-            opacity: 0.5;
         }
 
-        /* --- Floating Lanterns --- */
-        .hanging-lantern {
-            position: absolute;
-            top: -20px;
-            font-size: 3.5rem;
-            filter: drop-shadow(0 0 15px #ffcc00);
-            animation: swing 4s ease-in-out infinite;
-            transform-origin: top center;
-        }
+        .lantern { font-size: 4rem; filter: drop-shadow(0 0 15px var(--gold)); }
 
         @keyframes swing {
-            0%, 100% { transform: rotate(-3deg); }
-            50% { transform: rotate(3deg); }
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
         }
 
-        /* --- Main Greeting Card --- */
-        .card {
+        .moon {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            font-size: 5rem;
+            filter: drop-shadow(0 0 30px var(--gold));
+            animation: glow 4s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        header {
             text-align: center;
-            padding: 60px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-            border-radius: 4px;
-            max-width: 900px;
-            width: 90%;
-            z-index: 5;
-            animation: fadeInUp 2s ease;
+            margin-top: 8vh;
+            padding: 20px;
         }
 
-        .arabic-title {
-            font-size: 9rem;
+        h1 {
+            font-family: 'Reem Kufi Calligraphy', sans-serif;
+            font-size: 7rem;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
             margin-bottom: 10px;
-            font-weight: 700;
-            display: block;
         }
 
         .urdu-subtitle {
             font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: 2.5rem;
-            color: #fdfdfd;
-            line-height: 2.2;
-            margin-top: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 30px;
+            line-height: 2;
         }
 
-        /* --- Radiant Light Sweep Animation --- */
-        .shine {
-            position: relative;
-            overflow: hidden;
-        }
-        .shine::after {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: lightSweep 6s infinite;
-        }
-
-        @keyframes lightSweep {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        /* --- The Blessings Card & Button --- */
+        .blessings-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 40px;
+            padding: 40px;
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: fadeInUp 2s ease;
         }
 
-        /* Twinkling Stars */
-        .star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
+        .dua-display {
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 30px;
+            transition: opacity 0.5s ease;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+        #dua-title { color: var(--gold); font-size: 2.2rem; margin-bottom: 10px; }
+        #dua-text { font-family: 'Noto Nastaliq Urdu', serif; font-size: 1.5rem; color: #d1fae5; line-height: 2.2; }
+
+        /* --- Majestic Button Styling --- */
+        .dua-button {
+            background: var(--gold-gradient);
+            color: var(--emerald);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.8rem;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transition: 0.3s;
+        }
+
+        .dua-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.7);
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
+            from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        footer { margin: 40px 0; font-size: 1.2rem; color: rgba(255, 255, 255, 0.4); }
+
         @media (max-width: 768px) {
-            .arabic-title { font-size: 5rem; }
-            .urdu-subtitle { font-size: 1.8rem; }
-            .card { padding: 30px; }
+            h1 { font-size: 4rem; }
+            .urdu-subtitle { font-size: 1.5rem; }
+            .blessings-card { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="page-frame"></div>
+    <div class="moon">🌙</div>
+    
+    <div class="lantern-container">
+        <div class="lantern">🏮</div>
+    </div>
 
-    <div class="hanging-lantern" style="right: 15%;">🏮</div>
-    <div class="hanging-lantern" style="left: 15%; animation-delay: 1s;">🏮</div>
+    <header>
+        <h1>عيد مبارك</h1>
+        <p class="urdu-subtitle">آپ کے لیے خاص دعا</p>
+    </header>
+
+    <div class="blessings-card">
+        <div class="dua-display" id="dua-container">
+            <h3 id="dua-title">برکات و رحمت</h3>
+            <p id="dua-text">اللہ تعالیٰ اس عید پر آپ کے گھر کو خوشیوں، امن اور سکون سے بھر دے۔</p>
+        </div>
+
+        <button class="dua-button" onclick="changeDua()">دعا حاصل کریں</button>
+    </div>
+
+    <footer>
+        <p>٢٠٢٦ | نیک تمنائیں</p>
+    </footer>
 
     <script>
-        for (let i = 0; i < 40; i++) {
-            let star = document.createElement('div');
-            star.className = 'star';
-            star.style.width = star.style.height = Math.random() * 3 + 'px';
-            star.style.top = Math.random() * 100 + 'vh';
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.animationDelay = Math.random() * 5 + 's';
-            document.body.appendChild(star);
+        const duas = [
+            {
+                title: "برکات و رحمت",
+                text: "اللہ تعالیٰ اس عید پر آپ کے گھر کو خوشیوں، امن اور سکون سے بھر دے۔"
+            },
+            {
+                title: "قبولیتِ دعا",
+                text: "اللہ آپ کی تمام دعائیں، نیک اعمال اور قربانیاں اپنی بارگاہ میں قبول فرمائے۔"
+            },
+            {
+                title: "خوشحالی",
+                text: "یہ عید آپ کی زندگی میں کامیابیوں اور برکتوں کا نیا آغاز ثابت ہو۔"
+            },
+            {
+                title: "صحت اور سلامتی",
+                text: "اللہ آپ کو اور آپ کے اہل خانہ کو ہمیشہ اپنی حفظ و امان میں رکھے۔"
+            },
+            {
+                title: "رزق میں برکت",
+                text: "اللہ آپ کے رزق میں وسعت اور کاروبار میں برکت عطا فرمائے۔"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function changeDua() {
+            const container = document.getElementById('dua-container');
+            const title = document.getElementById('dua-title');
+            const text = document.getElementById('dua-text');
+
+            // Fade out
+            container.style.opacity = 0;
+
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % duas.length;
+                title.innerText = duas[currentIndex].title;
+                text.innerText = duas[currentIndex].text;
+
+                // Fade in
+                container.style.opacity = 1;
+            }, 500);
         }
     </script>
-
-    <div class="card shine">
-        <span class="arabic-title">عید مبارک</span>
-        <div class="urdu-subtitle">
-            اللہ تعالیٰ آپ کی زندگی کو خوشیوں، برکتوں اور دائمی سکون سے بھر دے۔ <br>
-            عید سعید مبارک!
-        </div>
-        
-        <div style="margin-top: 40px; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 20px;">
-            <p style="color: var(--gold-gradient); font-size: 1.2rem; letter-spacing: 5px; opacity: 0.8;">
-                ١٤٤٧ ھ | ٢٠٢٦ م
-            </p>
-        </div>
-    </div>
 
 </body>
 </html>

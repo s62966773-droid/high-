@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عيد مبارك</title>
+    <title>عيد مبارك | Eid Mubarak</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi+Calligraphy:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --primary-gold: #e6c27a;
-            --deep-green: #063b27;
-            --light-green: #0f5c3d;
+            --deep-green: #062b1d;
+            --light-green: #0a4d33;
             --glass: rgba(255, 255, 255, 0.08);
             --text-light: #f0fdf4;
         }
@@ -30,7 +30,55 @@
             overflow-x: hidden;
             background: linear-gradient(135deg, var(--light-green) 0%, var(--deep-green) 100%);
             min-height: 100vh;
-            font-family: 'Aref Ruqaa', serif; /* Applied Calligraphy Font Everywhere */
+            /* Using Amiri for general text */
+            font-family: 'Amiri', serif; 
+        }
+
+        /* --- Welcome Screen (Fixes the Autoplay Block) --- */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--deep-green);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease-out;
+        }
+
+        .enter-btn {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            padding: 15px 40px;
+            font-size: 2rem;
+            font-family: 'Reem Kufi Calligraphy', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(230, 194, 122, 0.2);
+        }
+
+        .enter-btn:hover {
+            background: var(--primary-gold);
+            color: var(--deep-green);
+            box-shadow: 0 0 30px rgba(230, 194, 122, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* Hide main content initially */
+        #main-content {
+            display: none;
+            opacity: 0;
+            animation: fadeInContent 2s forwards;
+        }
+
+        @keyframes fadeInContent {
+            to { opacity: 1; }
         }
 
         /* --- Virtual Animations --- */
@@ -48,7 +96,7 @@
         .moon {
             position: absolute;
             top: 15%;
-            left: 20%; /* Switched side for RTL */
+            left: 20%;
             font-size: 8rem;
             filter: drop-shadow(0 0 40px rgba(230, 194, 122, 0.6));
             animation: float 6s ease-in-out infinite;
@@ -83,22 +131,21 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            z-index: 1;
         }
 
         h1 {
-            font-size: 7rem;
+            /* Using pure calligraphy font for the main title */
+            font-family: 'Reem Kufi Calligraphy', sans-serif;
+            font-size: 8rem;
             color: var(--primary-gold);
             text-shadow: 0 0 30px rgba(230, 194, 122, 0.5);
             margin-bottom: 10px;
-            animation: fadeIn 2s ease-out;
-            font-weight: 700;
+            font-weight: 400;
         }
 
         p.subtitle {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #d1fae5;
-            animation: fadeIn 3s ease-out;
         }
 
         /* Audio Section */
@@ -106,22 +153,16 @@
             max-width: 900px;
             margin: -20px auto 100px;
             padding: 20px;
-            z-index: 1;
             position: relative;
         }
 
         .audio-card {
             background: var(--glass);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 20px rgba(230, 194, 122, 0.1);
-        }
-
-        .track-list {
-            margin-top: 20px;
         }
 
         .track {
@@ -129,28 +170,21 @@
             align-items: center;
             justify-content: space-between;
             padding: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
+            background: rgba(0,0,0,0.2);
             border-radius: 10px;
-        }
-
-        .track:hover {
-            background: rgba(230, 194, 122, 0.15);
-            transform: scale(1.02) translateX(-10px); /* RTL slide direction */
             border-right: 4px solid var(--primary-gold);
         }
 
         .track-info h3 {
+            font-family: 'Reem Kufi Calligraphy', sans-serif;
             color: var(--primary-gold);
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
 
         audio {
-            /* Styled to match the green/gold theme slightly better */
             filter: sepia(20%) saturate(150%) hue-rotate(90deg);
-            height: 35px;
+            height: 40px;
             opacity: 0.9;
-            outline: none;
         }
 
         footer {
@@ -161,60 +195,69 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         @media (max-width: 768px) {
             h1 { font-size: 5rem; }
             .moon { font-size: 5rem; left: 10%; }
-            .track { flex-direction: column; text-align: center; gap: 15px; }
-            .track:hover { transform: scale(1.02); }
+            .track { flex-direction: column; text-align: center; gap: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-animations">
-        <div class="moon">🌙</div>
-        <div class="star" style="top: 20%; right: 10%; width: 4px; height: 4px; animation-duration: 2s;"></div>
-        <div class="star" style="top: 35%; right: 80%; width: 3px; height: 3px; animation-duration: 3s;"></div>
-        <div class="star" style="top: 50%; right: 25%; width: 5px; height: 5px; animation-duration: 2.5s;"></div>
-        <div class="star" style="top: 70%; right: 70%; width: 4px; height: 4px; animation-duration: 4s;"></div>
-        <div class="star" style="top: 15%; right: 50%; width: 6px; height: 6px; animation-duration: 3.5s;"></div>
-        <div class="star" style="top: 80%; right: 15%; width: 3px; height: 3px; animation-duration: 2.8s;"></div>
-    </div>
+    <div id="welcome-screen">
+        <h2 style="font-family: 'Reem Kufi Calligraphy', sans-serif; font-size: 3rem; color: var(--text-light); margin-bottom: 30px;">مرحباً بك</h2> <button class="enter-btn" id="enter-btn">اضغط للدخول</button> </div>
 
-    <header>
-        <h1>عيد مبارك</h1> <p class="subtitle">فرح وبركات</p> </header>
+    <div id="main-content">
+        <div class="background-animations">
+            <div class="moon">🌙</div>
+            <div class="star" style="top: 20%; right: 10%; width: 4px; height: 4px; animation-duration: 2s;"></div>
+            <div class="star" style="top: 35%; right: 80%; width: 3px; height: 3px; animation-duration: 3s;"></div>
+            <div class="star" style="top: 50%; right: 25%; width: 5px; height: 5px; animation-duration: 2.5s;"></div>
+            <div class="star" style="top: 70%; right: 70%; width: 4px; height: 4px; animation-duration: 4s;"></div>
+            <div class="star" style="top: 15%; right: 50%; width: 6px; height: 6px; animation-duration: 3.5s;"></div>
+        </div>
 
-    <div class="container">
-        <div class="audio-card">
-            <h2 style="margin-bottom: 25px; border-right: 4px solid var(--primary-gold); padding-right: 15px; font-size: 2.5rem;">صوتيات العيد</h2> <div class="track-list">
+        <header>
+            <h1>عيد مبارك</h1> <p class="subtitle">كل عام وأنتم بخير</p> </header>
+
+        <div class="container">
+            <div class="audio-card">
                 <div class="track">
                     <div class="track-info">
-                        <h3>أغنية عيد مبارك</h3> </div>
-                    <audio controls autoplay loop>
+                        <h3>أغنية العيد</h3> </div>
+                    <audio id="eid-music" controls loop>
                         <source src="eid-song.mp3" type="audio/mpeg">
-                        متصفحك لا يدعم عنصر الصوت.
-                    </audio>
-                </div>
-
-                <div class="track">
-                    <div class="track-info">
-                        <h3>لحن الغيتار</h3> </div>
-                    <audio controls>
-                        <source src="guitar-track.mp3" type="audio/mpeg">
                         متصفحك لا يدعم عنصر الصوت.
                     </audio>
                 </div>
             </div>
         </div>
+
+        <footer>
+            <p>تم التصميم بامتياز &copy; ٢٠٢٦</p>
+        </footer>
     </div>
 
-    <footer>
-        <p>تم التصميم بامتياز &copy; ٢٠٢٦</p> </footer>
+    <script>
+        document.getElementById('enter-btn').addEventListener('click', function() {
+            // Get elements
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const mainContent = document.getElementById('main-content');
+            const music = document.getElementById('eid-music');
+
+            // Play the music instantly when button is clicked
+            music.play();
+
+            // Fade out the welcome screen
+            welcomeScreen.style.opacity = '0';
+            
+            // After fade out, hide it completely and show the website
+            setTimeout(function() {
+                welcomeScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+            }, 800);
+        });
+    </script>
 
 </body>
 </html>
